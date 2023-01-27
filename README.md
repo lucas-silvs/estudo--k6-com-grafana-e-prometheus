@@ -1,5 +1,5 @@
 # estudo--k6-com-grafana-e-prometheus
-estudo  da ferramenta para teste de carga K6, exportando  métricas para o prometheus e gerando dashboard no grafana
+estudo  da ferramenta para teste de carga K6, exportando  métricas para o prometheus e gerando dashboard no grafana.
 
 ## Tecnologias
 - K6
@@ -80,6 +80,13 @@ Ao executar o teste, acesse o Dashboard [Test Result](http://localhost:3000/d/01
 
 ![gif_dashboard_teste](https://raw.githubusercontent.com/lucas-silvs/estudo--k6-com-grafana-e-prometheus/main/images/metricas_exemplo_dashboard.gif)
 
+
+## Referencias
+
+- [K6](https://k6.io/docs/)
+- [Docker](https://www.docker.com/)
+- [Grafana](https://grafana.com/)
+- [Prometheus](https://prometheus.io/)
 
 
 

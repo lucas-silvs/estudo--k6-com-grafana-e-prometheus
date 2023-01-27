@@ -10,33 +10,33 @@ import { check } from 'k6';
 var ambiente = "http://localhost:5000"
 
 export const options = {
-    
-    scenarios: {
-      shared_iterations_scenario: {
-        executor: "shared-iterations",
-        vus: 10,
-        iterations: 100,
-        startTime: "0s",
-      },
-      
-      per_vu_scenario: {
-        executor: "per-vu-iterations",
-        vus: 10,
-        iterations: 10,
-        startTime: "10s",
+//Configuração Prometheus
+    ext: {
+        loadimpact: {
+          apm: [
+            {
+              provider: 'prometheus',              
+              includeDefaultMetrics: true,
+              metrics: ['http_req_sending', 'my_rate', 'my_gauge'], //...other options,
+              includeTestRunId: false,
+              resampleRate: 3,
+            },
+          ],
+        },
       },
 
+    scenarios: {
       constant_arrival_rate_scenario: {
         executor: 'constant-arrival-rate',
   
         // definida a duração do teste, pode ser utilizada a unidade de médida para definir o tempo de duração (s: segundos; m: minutos; h: horas))
-        duration: '1m',
+        duration: '5m',
   
         //definido a quantidade de requisições que serão executadas a cada tempo definido no campo timeUnit
-        rate: 30,
+        rate: 300,
   
         //definido unidade de tempo definida para ser utilizada no teste (s: segundos; m: minutos; h: horas)
-        timeUnit: '1s',
+        timeUnit: '1m',
   
         // definido a quantidade de usuários virtuais serão alocados inicialmente
         preAllocatedVUs: 2,
@@ -44,7 +44,8 @@ export const options = {
         // definido a quantidade máxima de usuários que pode ser alocada durante o teste
         maxVUs: 50,
       },
-    },
+    }
+    
   };
 
   const username = "admin"
